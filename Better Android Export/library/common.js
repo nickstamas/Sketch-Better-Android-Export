@@ -33,6 +33,8 @@ com.animal = {
             // Hide all layers except for selected and store visibility
             for (var k=0; k < [[root layers] count]; k++) {
               var currentLayer = [[root layers] objectAtIndex:k];
+              log("currentLayer:");
+              log(currentLayer);
               if ([currentLayer containsSelectedItem]) {
                 hideLayers(currentLayer, target);
               } else if (!(currentLayer == target)) {
@@ -45,6 +47,8 @@ com.animal = {
               }
             }
           }
+
+          hideLayers(root, layer);
 
           var rect = [[layer absoluteRect] rect];
           var path = [[[openDlg URLs] objectAtIndex:0] fileSystemRepresentation];
