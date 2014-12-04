@@ -78,6 +78,5 @@ com.animal = {
         [doc showMessage: [selection count] + " layers exported to " + path]; 
       }
     }
-  },
-
+  }
 }
