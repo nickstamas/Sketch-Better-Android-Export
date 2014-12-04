@@ -23,7 +23,7 @@ com.animal = {
           var layerVisibility = [];
 
           [artboard deselectAllLayers];
-          log(selection);
+
           var layerArray = [layer];
           [artboard selectLayers:layerArray];
 
@@ -33,8 +33,6 @@ com.animal = {
             // Hide all layers except for selected and store visibility
             for (var k=0; k < [[root layers] count]; k++) {
               var currentLayer = [[root layers] objectAtIndex:k];
-              log("currentLayer:");
-              log(currentLayer);
               if ([currentLayer containsSelectedItem] && currentLayer != target) {
                 hideLayers(currentLayer, target);
               } else if (!(currentLayer == target)) {
@@ -70,7 +68,6 @@ com.animal = {
             if (visibility == 0) {
               [layer setIsVisible:false];
             } else {
-              log("visible is true");
               [layer setIsVisible:true];
             }
           }
