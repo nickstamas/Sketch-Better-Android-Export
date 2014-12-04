@@ -35,7 +35,7 @@ com.animal = {
               var currentLayer = [[root layers] objectAtIndex:k];
               log("currentLayer:");
               log(currentLayer);
-              if ([currentLayer containsSelectedItem]) {
+              if ([currentLayer containsSelectedItem] && currentLayer != target) {
                 hideLayers(currentLayer, target);
               } else if (!(currentLayer == target)) {
                 var dict = [[NSMutableDictionary alloc] init];
