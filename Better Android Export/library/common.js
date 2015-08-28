@@ -20,17 +20,17 @@ com.animal = {
       if ( [openDlg runModalForDirectory:nil file:nil] == NSOKButton ) {
 
         for (var j=0; j < [selection count]; j++) {
-          
+
           var layer = [selection objectAtIndex:j];
-          var artboard = [layer parentArtboard];
+          var parent =  ([layer parentArtboard]) ? [layer parentArtboard] : [doc currentPage];
           var layerVisibility = [];
 
-          [artboard deselectAllLayers];
+          [parent deselectAllLayers];
 
           var layerArray = [layer];
-          [artboard selectLayers:layerArray];
+          [parent selectLayers:layerArray];
 
-          var root = artboard;
+          var root = parent;
 
           // This recursive function is dedicated to my college
           // computer science professor, Dave Small.
@@ -44,7 +44,7 @@ com.animal = {
                 var dict = [[NSMutableDictionary alloc] init];
                 [dict addObject:currentLayer forKey:"layer"];
                 [dict addObject:[currentLayer isVisible] forKey:"visible"];
-                  
+
                 layerVisibility.push(dict);
                 [currentLayer setIsVisible: false];
               }
@@ -59,7 +59,7 @@ com.animal = {
             for (var f=0; f < factors.length; f++) {
               var factor = factors[f];
               slice = [MSExportRequest requestWithRect:rect scale:factor["scale"]];
-              [doc saveArtboardOrSlice:slice toFile:path + "/" + factor["name"] + "/" + [layer name] + ".png"]; 
+              [doc saveArtboardOrSlice:slice toFile:path + "/" + factor["name"] + "/" + [layer name] + ".png"];
             }
           });
 
@@ -68,7 +68,7 @@ com.animal = {
             var dict = layerVisibility[m];
             var layer = [dict objectForKey:"layer"];
             var visibility = [dict objectForKey:"visible"];
-            
+
             if (visibility == 0) {
               [layer setIsVisible:false];
             } else {
@@ -77,10 +77,10 @@ com.animal = {
           }
 
           // Restore selection
-          [artboard selectLayers:selection];
+          [parent selectLayers:selection];
 
         }
-        [doc showMessage: [selection count] + " layers exported to " + path]; 
+        [doc showMessage: [selection count] + " layers exported to " + path];
       }
     }
   }
