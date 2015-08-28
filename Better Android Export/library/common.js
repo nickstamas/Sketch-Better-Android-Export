@@ -1,3 +1,6 @@
+// Common Library
+// Nick Stamas @nickstamas
+
 #import 'library/sandbox.js'
 
 var com = {};
@@ -29,6 +32,8 @@ com.animal = {
 
           var root = parent;
 
+          // This recursive function is dedicated to my college
+          // computer science professor, Dave Small.
           var hideLayers = function(root, target) {
             // Hide all layers except for selected and store visibility
             for (var k=0; k < [[root layers] count]; k++) {
