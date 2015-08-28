@@ -46,7 +46,14 @@ com.animal = {
             }
           }
 
-          hideLayers(root, layer);
+          var layerClassString = NSStringFromClass([layer class]);
+
+          log("layerClassString");
+          log(layerClassString);
+
+          if (!(layerClassString == "MSSliceLayer")) {
+            hideLayers(root, layer);
+          }
 
           var rect = [[layer absoluteRect] rect];
           var path = [[[openDlg URLs] objectAtIndex:0] fileSystemRepresentation];
