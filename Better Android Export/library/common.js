@@ -41,9 +41,10 @@ com.animal = {
               if ([currentLayer containsSelectedItem] && currentLayer != target) {
                 hideLayers(currentLayer, target);
               } else if (!(currentLayer == target)) {
-                var dict = [[NSMutableDictionary alloc] init];
-                [dict addObject:currentLayer forKey:"layer"];
-                [dict addObject:[currentLayer isVisible] forKey:"visible"];
+		var dict = {
+                   "layer": currentLayer,
+                   "visible": [currentLayer isVisible]
+                 };
 
                 layerVisibility.push(dict);
                 [currentLayer setIsVisible: false];
@@ -73,9 +74,9 @@ com.animal = {
 
           // Restore layers visibility
           for (var m=0; m < layerVisibility.length; m++) {
-            var dict = layerVisibility[m];
-            var layer = [dict objectForKey:"layer"];
-            var visibility = [dict objectForKey:"visible"];
+            var dict   = layerVisibility[m];
+            layer      = dict.layer;
+            visibility = dict.visible;
 
             if (visibility == 0) {
               [layer setIsVisible:false];
