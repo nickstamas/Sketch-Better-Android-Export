@@ -65,11 +65,30 @@ com.animal = {
           var path = [[[openDlg URLs] objectAtIndex:0] fileSystemRepresentation];
 
           new AppSandbox().authorize(path, function() {
+            var copyLayer = [layer duplicate];
+
+            var exportSizes = [[copyLayer exportOptions] sizes];
+            while([exportSizes count] > 0)
+              [[exportSizes firstObject] remove];
+
+            var fileNames = [];
             for (var f=0; f < factors.length; f++) {
               var factor = factors[f];
-              slice = [MSExportRequest requestWithRect:rect scale:factor["scale"]];
-              [doc saveArtboardOrSlice:slice toFile:path + "/" + factor["name"] + "/" + [layer name] + ".png"];
+
+              var exportOption = [[copyLayer exportOptions] addExportSize];
+              [exportOption setFormat:"png"];
+              [exportOption setScale:factor["scale"]];
+              [exportOption setName:factor["name"]];
+
+              var fileName = path + "/" + factor["name"] + "/" + [layer name] + ".png";
+              fileNames.push(fileName);
             }
+            
+            var slices = [MSSliceMaker slicesFromExportableLayer:copyLayer inRect:[copyLayer absoluteDirtyRect]];
+            for (var i=0;i < [slices count]; i++)
+              [doc saveArtboardOrSlice:slices[i] toFile:fileNames[i]];
+
+            [copyLayer removeFromParent];
           });
 
           // Restore layers visibility
