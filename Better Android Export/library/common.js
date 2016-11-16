@@ -67,7 +67,10 @@ com.animal = {
           new AppSandbox().authorize(path, function() {
             for (var f=0; f < factors.length; f++) {
               var factor = factors[f];
-              slice = [MSExportRequest requestWithRect:rect scale:factor["scale"]];
+              var slice = [MSExportRequest new]
+              slice.rect = rect;
+              slice.scale = factor["scale"];
+
               [doc saveArtboardOrSlice:slice toFile:path + "/" + factor["name"] + "/" + [layer name] + ".png"];
             }
           });
