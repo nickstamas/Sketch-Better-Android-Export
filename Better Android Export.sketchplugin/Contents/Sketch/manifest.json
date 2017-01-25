@@ -1,0 +1,24 @@
+{
+    "name" : "Sketch Better Android Export",
+    "identifier" : "com.nickstamas.better-android-export",
+    "version" : "1.0.0",
+    "description" : "Better exporting for Android",
+    "authorEmail" : "nicholas.stamas@gmail.com",
+    "author" : "Nick Stamas",
+    "commands" : [
+    {
+      "script" : "export1x.cocoascript",
+      "handler" : "onRun",
+      "shortcut" : "",
+      "name" : "Export (1x base)",
+      "identifier" : "export1x"
+    },
+    {
+      "script" : "export2x.cocoascript",
+      "handler" : "onRun",
+      "shortcut" : "",
+      "name" : "Export (2x base)",
+      "identifier" : "export2x"
+    }
+  ]
+}

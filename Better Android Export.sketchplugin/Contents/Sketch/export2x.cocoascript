@@ -1,7 +1,7 @@
 // Better Android Export
 // Nick Stamas @nickstamas
 
-#import 'library/common.js'
+@import 'library/common.cocoascript';
 
 var factors = [
   {name: "drawable-mdpi", scale: 0.50},
@@ -10,4 +10,6 @@ var factors = [
   {name: "drawable-xxhdpi", scale: 1.50},
   {name: "drawable-xxxhdpi", scale: 2.0}];
 
-com.animal.exportWithFactors(factors);
+function onRun(context) {
+  com.animal.exportWithFactors(context, factors);
+}

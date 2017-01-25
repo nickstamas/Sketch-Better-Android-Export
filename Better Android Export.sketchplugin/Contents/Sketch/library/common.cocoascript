@@ -1,13 +1,16 @@
 // Common Library
 // Nick Stamas @nickstamas
 
-#import 'library/sandbox.js'
+@import 'library/sandbox.cocoascript';
 
 var com = {};
 com.animal = {
-  exportWithFactors: function(factors) {
-    if ([selection count] == 0) {
-      [doc showMessage:"No layer is selected."];
+  exportWithFactors: function(context, factors) {
+    var doc = context.document;
+    var selection = context.selection;
+    if (selection.length == 0) {
+      log('no layer selected')
+      doc.showMessage('No layer is selected')
     } else {
       var openDlg = [NSOpenPanel openPanel];
 
